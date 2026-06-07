@@ -37,7 +37,12 @@ export type TagVariant =
   | "tailwind"
   | "cpp"
   | "qt"
-  | "express";
+  | "express"
+  | "go"
+  | "nocodb"
+  | "flask"
+  | "nginx"
+  | "rabbitmq";
 
 export const tagLabels = {
   three: "Three.js",
@@ -79,4 +84,9 @@ export const tagLabels = {
   cpp: "C++",
   qt: "Qt",
   express: "Express",
+  go: "Go",
+  nocodb: "NocoDB",
+  flask: "Flask",
+  nginx: "Nginx",
+  rabbitmq: "RabbitMQ",
 } as const satisfies Record<TagVariant, string>;

@@ -4,7 +4,6 @@ import thumbnailAutoVietsub from "../../../assets/thumbnails/autovietsub-pipelin
 import thumbnailTheHive from "../../../assets/thumbnails/thehive-migration.png";
 import thumbnailN8n from "../../../assets/thumbnails/n8n-automation.png";
 import thumbnailGemmaChat from "../../../assets/thumbnails/gemma-chat.png";
-import thumbnailXOffice from "../../../assets/thumbnails/xoffice-coworking.png";
 
 import type { ProjectPreview } from "../../types";
 
@@ -44,11 +43,5 @@ export default [
     slug: "gemma-chat",
     thumbnail: thumbnailGemmaChat,
     description: "Electron desktop chat client for Google Gemma",
-  },
-  {
-    title: "xOffice Coworking",
-    slug: "xoffice-coworking",
-    thumbnail: thumbnailXOffice,
-    description: "Multi-platform coworking space management suite",
   },
 ] as const satisfies ProjectPreview[];
