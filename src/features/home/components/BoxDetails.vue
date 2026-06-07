@@ -6,6 +6,7 @@ import AppearingText from "../../../components/AppearingText.vue";
 import { BREAKPOINTS } from "../../../utils/sizes";
 import { Vector3 } from "three";
 import PinIcon from "../../../components/icons/Pin.vue";
+import VietnamFlag from "../../../components/icons/VietnamFlag.vue";
 import ProjectedElement from "../../../components/ProjectedElement.vue";
 
 const point = new Vector3(-0.76, 3.6, 6.75);
@@ -121,6 +122,7 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
               :duration="0.35"
               @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.1)"
             />
+            <VietnamFlag class="box-details-flag" />
           </div>
         </div>
       </div>
@@ -242,6 +244,24 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
     &-copy {
       flex: 0.5;
     }
+  }
+
+  &-flag {
+    margin-left: 2px;
+    opacity: 0;
+    animation: flagFadeIn 0.4s ease-out forwards;
+    animation-delay: 0.65s;
+  }
+}
+
+@keyframes flagFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 </style>
