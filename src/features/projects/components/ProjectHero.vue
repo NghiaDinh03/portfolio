@@ -21,35 +21,44 @@ watch(projectId, () => {
 </script>
 
 <template>
-  <div class="project-hero grid">
-    <div class="project-hero-top">
-      <div class="project-hero-title-wrapper">
-        <h1 class="project-hero-title" :key="animationKey">
-          {{ content.title }}
-        </h1>
+  <div class="project-hero">
+    <div class="project-hero-layout">
+      <div class="project-hero-left">
+        <div class="project-hero-top">
+          <div class="project-hero-title-wrapper">
+            <h1 class="project-hero-title" :key="animationKey">
+              {{ content.title }}
+            </h1>
+          </div>
+          <div class="project-hero-tags">
+            <Tag v-for="tag in content.tags" :key="tag" :variant="tag" />
+          </div>
+        </div>
+        <p class="project-hero-description" v-html="content.description"></p>
+        <div class="project-hero-buttons">
+          <Link v-if="content.live" :href="content.live" external class="project-hero-button" data-cursor="arrow-external">
+            <Button renderAs="div" variant="accent" class="children-unclickable" data-hoversound="hover">{{ t("live-view") }}</Button>
+          </Link>
+          <Link
+            v-if="content.source"
+            :href="content.source"
+            external
+            class="project-hero-button"
+            data-cursor="arrow-external"
+          >
+            <Button renderAs="div" variant="border" class="children-unclickable" data-hoversound="hover">{{ t("source-code") }}</Button>
+          </Link>
+        </div>
       </div>
-      <div class="project-hero-tags">
-        <Tag v-for="tag in content.tags" :key="tag" :variant="tag" />
+      <div class="project-hero-right" v-if="content.components && content.components[0]">
+        <div class="project-hero-image-card">
+          <img
+            :src="(content.components[0] as any).props.src"
+            :alt="(content.components[0] as any).props.alt"
+            class="project-hero-image"
+          />
+        </div>
       </div>
-    </div>
-    <p class="project-hero-description" v-html="content.description"></p>
-    <div class="project-hero-buttons">
-      <Link v-if="content.live" :href="content.live" external class="project-hero-button" data-cursor="arrow-external">
-        <Button renderAs="div" variant="accent" class="children-unclickable" data-hoversound="hover">{{
-          t("live-view")
-        }}</Button>
-      </Link>
-      <Link
-        v-if="content.source"
-        :href="content.source"
-        external
-        class="project-hero-button"
-        data-cursor="arrow-external"
-      >
-        <Button renderAs="div" variant="border" class="children-unclickable" data-hoversound="hover">{{
-          t("source-code")
-        }}</Button>
-      </Link>
     </div>
   </div>
 </template>
@@ -57,11 +66,63 @@ watch(projectId, () => {
 <style scoped lang="scss">
 .project-hero {
   padding: 0 var(--space-outer);
+  padding-top: calc(var(--height-header) + 32px);
   padding-bottom: 48px;
-  padding-top: calc(var(--height-header) + 24px);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 
   @include mixins.mq("md") {
     padding-bottom: 64px;
+  }
+
+  &-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+
+    @include mixins.mq("md") {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--space-xxl);
+    }
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    flex: 1;
+    min-width: 0;
+
+    @include mixins.mq("md") {
+      flex: 1 1 55%;
+    }
+  }
+
+  &-right {
+    flex: 1;
+
+    @include mixins.mq("md") {
+      flex: 1 1 42%;
+      position: sticky;
+      top: calc(var(--height-header) + 24px);
+    }
+  }
+
+  &-image-card {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    border: var(--stroke-sm) solid var(--color-grayscale-500);
+    background: var(--color-grayscale-400);
+  }
+
+  &-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
   }
 
   &-button {
@@ -69,43 +130,20 @@ watch(projectId, () => {
 
     @include mixins.mq("md") {
       width: fit-content;
+      flex: unset;
     }
   }
 
   &-buttons {
-    grid-row: 3;
-    grid-column: 1 / 13;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: var(--space-sm);
-    margin-top: var(--space-md);
     width: 100%;
-    grid-column: 1 / 13;
+    flex-wrap: wrap;
 
     @include mixins.mq("md") {
       gap: var(--space-md);
       width: fit-content;
-      grid-column: 1 / 6;
-      grid-row: 2;
-      margin-top: 0;
-    }
-
-    @include mixins.mq("lg") {
-      grid-column: 2 / 6;
-    }
-  }
-
-  &-video {
-    grid-column: 1 / span 12;
-    align-self: center;
-
-    @include mixins.mq("md") {
-      grid-column: 1 / 8;
-    }
-
-    @include mixins.mq("lg") {
-      grid-column: 2 / 8;
     }
   }
 
@@ -142,23 +180,29 @@ watch(projectId, () => {
 
   &-description {
     color: var(--color-text-400);
-    line-height: var(--line-height-copy);
-    grid-column: 1 / 13;
-    align-self: center;
+    line-height: 1.9;
+    font-size: var(--font-size-md);
 
-    @include mixins.mq("md") {
-      grid-row: 1;
-      grid-column: 6 / 12;
+    :deep(strong) {
+      color: var(--color-text-400);
+      display: block;
+      margin-top: var(--space-md);
+      margin-bottom: var(--space-xs);
+      font-size: var(--font-size-sm);
+      letter-spacing: 0.04em;
+      opacity: 0.7;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    :deep(br) {
+      display: none;
     }
 
     @include mixins.mq("lg") {
-      grid-row: 1;
-      grid-column: 7 / 12;
-    }
-
-    @include mixins.mq("xl") {
-      grid-row: 1;
-      grid-column: 7 / 11;
+      font-size: var(--font-size-lg);
     }
   }
 
@@ -166,17 +210,6 @@ watch(projectId, () => {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
-    grid-row: 1;
-    align-self: top;
-    grid-column: 1 / 13;
-
-    @include mixins.mq("md") {
-      grid-column: 1 / 6;
-    }
-
-    @include mixins.mq("lg") {
-      grid-column: 2 / 6;
-    }
   }
 }
 </style>

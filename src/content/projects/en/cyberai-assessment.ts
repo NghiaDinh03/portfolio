@@ -11,22 +11,19 @@ export default {
   live: "https://github.com/NghiaDinh03/CyberAI-Assessment-project",
   source: "https://github.com/NghiaDinh03/CyberAI-Assessment-project",
   description:
-    `🛡️ <strong>AI-POWERED CYBERSECURITY ASSESSMENT & COMPLIANCE PLATFORM</strong><br/>
-    An enterprise-grade platform that automates cybersecurity audits and compliance gap analysis (ISO 27001 / TCVN 11930) securely on-premises.<br/><br/>
-    
-    <strong>💡 WHY IT WAS DEVELOPED (MOTIVATION & BUSINESS VALUE)</strong><br/>
-    Traditional cybersecurity audits are manual, time-consuming, and require highly specialized consultants. Standard cloud AI models pose data leak risks for sensitive infrastructure logs. This platform was created to automate 80% of compliance workflows fully local and offline, keeping critical threat intelligence and vulnerability data secure within the corporate network.<br/><br/>
-    
-    <strong>🛠️ KEY FEATURES</strong><br/>
-    • <strong>Multi-Model RAG Chatbot:</strong> Local document retrieval (ChromaDB Vector Store) indexing 21+ global security standards with multi-query expansion and confidence filtering.<br/>
-    • <strong>2-Phase AI Assessment Pipeline:</strong> Phase 1 runs automated GAP analysis on custom control uploads. Phase 2 compiles professional audits and compliance reports.<br/>
-    • <strong>Smart Intent Classifier:</strong> A hybrid router that dynamically redirects user prompts to local models (Llama 3.1, SecurityLLM) or switches to secure cloud APIs (Gemini/Claude) as fallback.<br/>
-    • <strong>Prometheus Metrics:</strong> Full observability tracking latency histograms, active sessions, and RAG hit/miss rates.<br/><br/>
-    
-    <strong>💻 CODING PRACTICES & TECH STACK</strong><br/>
-    • <strong>Backend:</strong> FastAPI (Python 3.11), ChromaDB, Ollama, LocalAI, Pydantic validation, JWT RBAC, Rate-Limiting.<br/>
-    • <strong>Frontend:</strong> Next.js 15, TailwindCSS, Server-Sent Events (SSE) for streaming chatbot tokens in real-time.<br/>
-    • <strong>Architecture:</strong> Clean modular architecture separating the RAG ingestion pipeline, local inference controllers, and API gateway with containerized Docker-Compose deployment.`,
+    `<strong>🎯 BÀI TOÁN CẦN GIẢI QUYẾT</strong>
+    Kiểm toán an ninh mạng truyền thống tốn nhiều nhân lực, phụ thuộc chuyên gia, và rủi ro rò rỉ log nhạy cảm nếu gửi lên cloud AI. Platform này tự động hoá 80% quy trình đánh giá tuân thủ ISO 27001 / TCVN 11930 hoàn toàn nội bộ — không cần kết nối internet.
+
+    <strong>⚡ TÍNH NĂNG CỐT LÕI</strong>
+    • <strong>RAG Chatbot nội bộ:</strong> Truy vấn 21+ bộ tiêu chuẩn bảo mật toàn cầu (ChromaDB) với multi-query expansion — không gửi dữ liệu ra ngoài.
+    • <strong>Pipeline đánh giá 2 pha:</strong> Pha 1 tự động GAP analysis; Pha 2 tổng hợp báo cáo kiểm toán chuyên nghiệp theo từng control.
+    • <strong>Smart Intent Classifier:</strong> Router thông minh chuyển hướng prompt sang local model (Llama 3.1 / SecurityLLM) hoặc cloud API (Gemini/Claude) dự phòng.
+    • <strong>Prometheus Metrics:</strong> Theo dõi latency, active sessions, và tỉ lệ RAG hit/miss theo thời gian thực.
+
+    <strong>🛠️ TECH STACK</strong>
+    • <strong>Backend:</strong> FastAPI · Python 3.11 · ChromaDB · Ollama · LocalAI · JWT RBAC · Rate-Limiting
+    • <strong>Frontend:</strong> Next.js 15 · TailwindCSS · SSE streaming token real-time
+    • <strong>DevOps:</strong> Docker Compose · Prometheus · Modular microservice architecture`,
   components: [
     {
       type: "media",

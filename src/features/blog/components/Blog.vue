@@ -220,8 +220,8 @@ const filteredPosts = computed(() => {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include mixins.mq("lg") {
-    grid-template-columns: repeat(2, 1fr);
+  @include mixins.mq("xl") {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -265,11 +265,12 @@ const filteredPosts = computed(() => {
 
   &-image-wrapper {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 5/3;
     position: relative;
     overflow: hidden;
     border-radius: var(--radius-lg);
     background-color: var(--color-beige-500);
+    max-height: 200px;
 
     .blog-card-image {
       width: 100%;
