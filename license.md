@@ -1,0 +1,17 @@
+Copyright (c) 2026 Nghia Dinh
+
+Original portfolio:
+https://nghiadu03.github.io/portfolio/
+
+Permission is hereby granted to use, copy, modify, and distribute this software for personal and educational purposes only, subject to the following conditions:
+
+1. Attribution to the original author (Nghia Dinh) and the original portfolio link (https://nghiadu03.github.io/portfolio/) must be clearly visible in:
+   - the source code,
+   - the repository README,
+   - and any public deployment using substantial portions of this project.
+
+2. Existing credit notices and attribution comments in the source code may not be removed or altered.
+
+3. Commercial use, resale, or redistribution of this project or substantial portions of it is prohibited without prior written permission from the author.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
