@@ -166,8 +166,9 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
     }
 
     &-name {
+      font-family: "Urbanist", sans-serif;
+      font-weight: 900;
       font-size: var(--font-size-title-xs);
-      font-weight: 700;
     }
 
     &-location {

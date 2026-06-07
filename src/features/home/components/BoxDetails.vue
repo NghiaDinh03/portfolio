@@ -221,8 +221,9 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
   }
 
   &-title {
+    font-family: "Urbanist", sans-serif;
+    font-weight: 900;
     font-size: var(--font-size-title-xxs);
-    font-weight: 700;
 
     @include mixins.mq("md") {
       font-size: var(--font-size-title-sm);

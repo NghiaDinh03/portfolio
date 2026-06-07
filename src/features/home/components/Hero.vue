@@ -1,9 +1,26 @@
 <script setup>
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import Button from "../../../components/Button.vue";
 import Banner from "../../../components/Banner.vue";
 import { preloaderVisible } from "../../../composables/usePreloader";
 import { t } from "../../../i18n/utils/translate";
 import AppearingText from "../../../components/AppearingText.vue";
+
+const roleKeys = ["job-title-1", "job-title-2", "job-title-3"];
+const currentRoleIndex = ref(0);
+const currentRole = computed(() => t(roleKeys[currentRoleIndex.value]));
+
+let intervalId = null;
+
+onMounted(() => {
+  intervalId = setInterval(() => {
+    currentRoleIndex.value = (currentRoleIndex.value + 1) % roleKeys.length;
+  }, 4000);
+});
+
+onUnmounted(() => {
+  if (intervalId) clearInterval(intervalId);
+});
 </script>
 
 <template>
@@ -12,7 +29,7 @@ import AppearingText from "../../../components/AppearingText.vue";
       <div class="hero-content-inner" id="hero-content-inner">
         <div class="hero-content-copys">
           <h1 class="hero-title">Nghĩa<br />Đinh</h1>
-          <Banner class="hero-banner" :copy="t('job-title')" v-if="!preloaderVisible" animated />
+          <Banner class="hero-banner" :copy="currentRole" v-if="!preloaderVisible" animated />
         </div>
       </div>
     </div>
