@@ -222,11 +222,10 @@ const setupSectionsAnimation = ({
     tl.to(completed, { value: true, duration: 0 }, 1);
 
     if (isLandscape) {
-      // Equal spacing between three animations: 0, 0.275, 0.55
       const DETAILS_DELAY = 0;
-      const DESCRIPTION_DELAY = 0.4;
-      const EDUCATION_DELAY = 0.4;
-      const SERVICES_DELAY = 0.8;
+      const DESCRIPTION_DELAY = 0.1;
+      const EDUCATION_DELAY = 0.1;
+      const SERVICES_DELAY = 0.6;
 
       // Details animation (first, only on landscape)
       tl.fromTo(contentDetails, { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power1.out" }, DETAILS_DELAY);

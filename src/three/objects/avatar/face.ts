@@ -7,8 +7,36 @@ import gsap from "gsap";
 
 import type { Material } from "three";
 import { sceneWeights } from "../../../animations/scenes";
+import { playSound } from "../../../features/sounds/utils/sounds";
 
 let material: Material | null = null;
+
+let clickExpression: string | null = null;
+let clickTimeout: any = null;
+const clickExpressions = ["proud-0", "sleeping", "contact-transition-2"] as const;
+let currentClickIndex = -1;
+
+const triggerClickExpression = () => {
+  currentClickIndex = (currentClickIndex + 1) % clickExpressions.length;
+  clickExpression = clickExpressions[currentClickIndex] || null;
+
+  // Phát âm thanh tương ứng với biểu cảm
+  if (clickExpression === "proud-0") {
+    playSound("click");
+  } else if (clickExpression === "sleeping") {
+    playSound("gasp");
+  } else {
+    playSound("click");
+  }
+
+  if (clickTimeout) {
+    clearTimeout(clickTimeout);
+  }
+  clickTimeout = setTimeout(() => {
+    clickExpression = null;
+    clickTimeout = null;
+  }, 2500);
+};
 
 const FRAME_INDEXES = {
   "default-0": 0,
@@ -104,6 +132,15 @@ const wave = () => {
 };
 
 const tick = () => {
+  if (clickExpression) {
+    let name = clickExpression;
+    if (clickExpression === "proud-0") {
+      name = `proud-${Math.round(blinkFrame.value)}`;
+    }
+    uniforms.uFrame.value = FRAME_INDEXES[name as keyof typeof FRAME_INDEXES] ?? 0;
+    return;
+  }
+
   const isContact = sceneWeights.contact > 0.001;
   if (isContact) {
     const name = sceneFrames.contact.startsWith("proud")
@@ -127,4 +164,4 @@ const destroy = () => {
   gsap.ticker.remove(tick);
 };
 
-export const face = { init, destroy, getMaterial, FRAME_INDEXES, wakeUp, wave };
+export const face = { init, destroy, getMaterial, FRAME_INDEXES, wakeUp, wave, triggerClickExpression };

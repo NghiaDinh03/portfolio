@@ -134,7 +134,7 @@ const filteredPosts = computed(() => {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  color: var(--color-white-400);
+  color: var(--color-text-400);
 }
 
 .blog-header {
@@ -155,8 +155,7 @@ const filteredPosts = computed(() => {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-cyan-400);
-  text-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+  color: var(--color-text-400);
 }
 
 .blog-controls {
@@ -171,38 +170,44 @@ const filteredPosts = computed(() => {
 
 .blog-search {
   flex: 1;
-  background: rgba(10, 10, 15, 0.7);
-  border: var(--stroke-sm) solid rgba(0, 229, 255, 0.3);
-  border-radius: var(--radius-md);
-  color: var(--color-white-400);
+  background: #ffffff;
+  border: var(--stroke-sm) solid var(--color-grayscale-500);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-400);
   padding: var(--space-xs) var(--space-sm);
   outline: none;
-  font-family: monospace;
+  font-family: "Urbanist", sans-serif;
+  font-weight: 600;
   font-size: var(--font-size-sm);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease-in-out;
+  min-width: 180px;
+
+  &::placeholder {
+    color: var(--color-text-300);
+  }
 
   &:focus {
-    border-color: var(--color-cyan-400);
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
-    background: rgba(10, 10, 15, 0.95);
+    border-color: #263c70;
+    box-shadow: 0 4px 12px rgba(38, 60, 112, 0.08);
   }
 }
 
 .blog-filter {
-  background: rgba(10, 10, 15, 0.7);
-  border: var(--stroke-sm) solid rgba(0, 229, 255, 0.3);
-  border-radius: var(--radius-md);
-  color: var(--color-white-400);
+  background: #ffffff;
+  border: var(--stroke-sm) solid var(--color-grayscale-500);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-400);
   padding: var(--space-xs) var(--space-sm);
   outline: none;
-  font-family: monospace;
+  font-family: "Urbanist", sans-serif;
+  font-weight: 600;
   cursor: pointer;
   font-size: var(--font-size-sm);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease-in-out;
 
   &:focus, &:hover {
-    border-color: var(--color-cyan-400);
-    background: rgba(10, 10, 15, 0.95);
+    border-color: #263c70;
+    box-shadow: 0 4px 12px rgba(38, 60, 112, 0.08);
   }
 }
 
@@ -221,58 +226,67 @@ const filteredPosts = computed(() => {
 }
 
 .blog-card {
-  border: var(--stroke-sm) solid rgba(0, 229, 255, 0.12);
+  --hover: 0;
+  position: relative;
   border-radius: var(--radius-xl);
-  background: rgba(10, 15, 30, 0.45);
-  backdrop-filter: blur(12px);
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding-bottom: var(--space-xs);
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    background-color: var(--color-grayscale-400);
+    border-radius: var(--radius-xl);
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-in-out;
+  }
 
   &:hover {
-    border-color: var(--color-cyan-400);
-    box-shadow: 0 12px 35px rgba(0, 229, 255, 0.22);
-    transform: translateY(-6px);
+    --hover: 1;
+
+    &::after {
+      opacity: 1;
+    }
 
     .blog-card-image {
-      transform: scale(1.06);
-    }
-
-    .blog-card-image-wrapper .blog-card-overlay {
-      background: rgba(0, 229, 255, 0.08);
-    }
-
-    .blog-card-link {
-      color: var(--color-cyan-400);
-      transform: translateX(4px);
+      transform: scale(1.02);
     }
   }
 
   &-image-wrapper {
     width: 100%;
-    height: 180px;
+    aspect-ratio: 16/9;
     position: relative;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-beige-500);
 
     .blog-card-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     .blog-card-badge {
       position: absolute;
       top: var(--space-sm);
       right: var(--space-sm);
-      background: rgba(10, 10, 15, 0.85);
-      border: 1px solid rgba(0, 229, 255, 0.4);
-      color: var(--color-cyan-400);
+      background: #263c70;
+      color: var(--color-white-400);
       font-size: 10px;
-      font-family: monospace;
+      font-family: "Urbanist", sans-serif;
+      font-weight: 700;
       padding: 4px 10px;
       border-radius: 20px;
       z-index: 2;
@@ -284,17 +298,17 @@ const filteredPosts = computed(() => {
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.05);
       transition: background 0.4s ease;
       z-index: 1;
     }
   }
 
   &-info {
-    padding: var(--space-md);
+    padding-top: var(--space-sm);
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
     flex-grow: 1;
   }
 
@@ -303,12 +317,12 @@ const filteredPosts = computed(() => {
     justify-content: space-between;
     align-items: center;
     font-size: var(--font-size-xs);
+    margin-bottom: var(--space-xxs);
   }
 
   &-date {
-    color: var(--color-white-400);
-    opacity: 0.6;
-    font-family: monospace;
+    color: var(--color-text-300);
+    font-weight: 500;
   }
 
   &-tags {
@@ -318,52 +332,58 @@ const filteredPosts = computed(() => {
 
   &-tag {
     font-size: 9px;
-    background: rgba(0, 229, 255, 0.08);
-    color: var(--color-cyan-400);
-    border: 1px solid rgba(0, 229, 255, 0.25);
+    background: var(--color-grayscale-400);
+    color: var(--color-text-300);
+    border: 1px solid var(--color-grayscale-500);
     padding: 2px 8px;
     border-radius: 10px;
     text-transform: uppercase;
-    font-family: monospace;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 600;
   }
 
   &-title {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-title-xs);
     font-weight: 700;
-    color: var(--color-white-400);
+    color: var(--color-text-400);
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-bottom: var(--space-xxs);
   }
 
   &-excerpt {
     font-size: var(--font-size-sm);
-    color: var(--color-white-400);
-    opacity: 0.75;
+    color: var(--color-text-300);
+    font-weight: 500;
     line-height: 1.5;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     flex-grow: 1;
+    margin-bottom: var(--space-xs);
   }
 
   &-footer {
-    margin-top: var(--space-xs);
     display: flex;
     justify-content: flex-start;
   }
 
   &-link {
-    color: rgba(0, 229, 255, 0.7);
+    color: #263c70;
     font-weight: 700;
-    font-family: monospace;
+    font-family: "Urbanist", sans-serif;
     font-size: var(--font-size-sm);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
+
+    &:hover {
+      transform: translateX(4px);
+    }
   }
 }
 
@@ -371,9 +391,8 @@ const filteredPosts = computed(() => {
   grid-column: 1 / -1;
   text-align: center;
   padding: var(--space-xxl) 0;
-  color: var(--color-white-400);
-  opacity: 0.6;
-  font-family: monospace;
+  color: var(--color-text-300);
+  font-weight: 500;
 }
 
 .blog-modal-overlay {
@@ -382,8 +401,8 @@ const filteredPosts = computed(() => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(3, 7, 18, 0.92);
-  backdrop-filter: blur(14px);
+  background: rgba(3, 7, 18, 0.45);
+  backdrop-filter: blur(10px);
   z-index: 99999;
   display: flex;
   justify-content: center;
@@ -392,13 +411,12 @@ const filteredPosts = computed(() => {
 }
 
 .blog-modal {
-  background: #090d14;
+  background: #fdfbf7;
   width: 100%;
   max-width: 820px;
   max-height: 88vh;
   border-radius: var(--radius-xl);
-  border: var(--stroke-sm) solid rgba(0, 229, 255, 0.25);
-  box-shadow: 0 0 50px rgba(0, 229, 255, 0.18);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   position: relative;
   display: flex;
@@ -409,10 +427,10 @@ const filteredPosts = computed(() => {
     position: absolute;
     top: var(--space-sm);
     right: var(--space-md);
-    background: rgba(10, 10, 15, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
-    color: var(--color-white-400);
+    color: var(--color-text-400);
     width: 36px;
     height: 36px;
     font-size: 24px;
@@ -424,9 +442,9 @@ const filteredPosts = computed(() => {
     transition: all 0.2s ease;
 
     &:hover {
-      color: var(--color-cyan-400);
-      border-color: var(--color-cyan-400);
-      background: rgba(0, 229, 255, 0.1);
+      background: #ffffff;
+      color: #263c70;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
   }
 
@@ -454,7 +472,7 @@ const filteredPosts = computed(() => {
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, rgba(9, 13, 20, 0.1) 0%, rgba(9, 13, 20, 1) 98%);
+      background: linear-gradient(to bottom, rgba(253, 251, 247, 0.1) 0%, rgba(253, 251, 247, 1) 98%);
     }
   }
 
@@ -470,9 +488,9 @@ const filteredPosts = computed(() => {
   }
 
   &-title {
-    font-size: var(--font-size-title-xs);
-    font-weight: 700;
-    color: var(--color-white-400);
+    font-size: var(--font-size-title-sm);
+    font-weight: 900;
+    color: var(--color-text-400);
     line-height: 1.3;
   }
 
@@ -480,11 +498,11 @@ const filteredPosts = computed(() => {
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid var(--color-grayscale-500);
     padding-bottom: var(--space-md);
     font-size: var(--font-size-sm);
-    font-family: monospace;
-    opacity: 0.85;
+    color: var(--color-text-300);
+    font-weight: 500;
 
     @include mixins.mq("sm") {
       flex-direction: row;
@@ -500,33 +518,35 @@ const filteredPosts = computed(() => {
 
   &-tag {
     font-size: 9px;
-    background: rgba(0, 229, 255, 0.12);
-    color: var(--color-cyan-400);
-    border: 1px solid rgba(0, 229, 255, 0.3);
+    background: var(--color-grayscale-400);
+    color: var(--color-text-300);
+    border: 1px solid var(--color-grayscale-500);
     padding: 2px 8px;
     border-radius: 10px;
     text-transform: uppercase;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 600;
   }
 }
 
 .blog-markdown-body {
   line-height: 1.85;
   font-size: var(--font-size-md);
-  color: #e6edf3;
+  color: var(--color-text-400);
 
   :deep(h2) {
     font-size: var(--font-size-title-xxs);
-    color: var(--color-cyan-400);
+    color: #263c70;
     margin-top: 1.6em;
     margin-bottom: 0.6em;
     font-weight: 700;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid var(--color-grayscale-500);
     padding-bottom: 6px;
   }
 
   :deep(h3) {
     font-size: var(--font-size-md);
-    color: var(--color-white-400);
+    color: var(--color-text-400);
     margin-top: 1.3em;
     margin-bottom: 0.5em;
     font-weight: 700;
@@ -548,21 +568,21 @@ const filteredPosts = computed(() => {
   }
 
   :deep(a) {
-    color: var(--color-cyan-400);
+    color: #263c70;
     text-decoration: none;
-    border-bottom: 1px dashed var(--color-cyan-400);
+    border-bottom: 1px dashed #263c70;
     transition: all 0.2s ease;
 
     &:hover {
-      color: var(--color-white-400);
-      border-bottom-color: var(--color-white-400);
+      color: var(--color-text-400);
+      border-bottom-color: var(--color-text-400);
     }
   }
 
   :deep(code) {
-    background: rgba(0, 229, 255, 0.08);
-    border: 1px solid rgba(0, 229, 255, 0.25);
-    color: var(--color-cyan-400);
+    background: var(--color-grayscale-400);
+    border: 1px solid var(--color-grayscale-500);
+    color: #263c70;
     padding: 2px 6px;
     border-radius: 5px;
     font-family: monospace;
@@ -570,19 +590,19 @@ const filteredPosts = computed(() => {
   }
 
   :deep(pre) {
-    background: #0f141c;
+    background: #f4f1ea;
     padding: var(--space-md);
     border-radius: 10px;
     overflow-x: auto;
     margin-bottom: 1.3em;
-    border: 1px solid rgba(0, 229, 255, 0.15);
+    border: 1px solid var(--color-grayscale-500);
 
     code {
       background: transparent;
       border: none;
       padding: 0;
       font-size: 90%;
-      color: #e6edf3;
+      color: var(--color-text-400);
     }
   }
 
@@ -593,19 +613,19 @@ const filteredPosts = computed(() => {
     font-size: var(--font-size-sm);
 
     th, td {
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--color-grayscale-500);
       padding: 10px 14px;
       text-align: left;
     }
 
     th {
-      background: rgba(0, 229, 255, 0.06);
-      color: var(--color-cyan-400);
+      background: var(--color-grayscale-400);
+      color: #263c70;
       font-weight: 700;
     }
 
     tr:nth-child(even) {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(0, 0, 0, 0.01);
     }
   }
 }

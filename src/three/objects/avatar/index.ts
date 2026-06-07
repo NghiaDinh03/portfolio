@@ -1,5 +1,5 @@
 import { resources } from "../../../utils/resources";
-import { Mesh, Vector3, Euler, Group, ShaderMaterial, LinearSRGBColorSpace, BoxGeometry, MeshBasicMaterial } from "three";
+import { Mesh, Vector3, Euler, Group, ShaderMaterial, LinearSRGBColorSpace, BoxGeometry, MeshBasicMaterial, Box3 } from "three";
 import { scene } from "../../core/scene";
 import { animations } from "./animations";
 import { sceneWeights, sceneWeightsInOut } from "../../../animations/scenes";
@@ -12,6 +12,8 @@ import headVertexShader from "../../shaders/avatar-head/vertex.glsl";
 import headFragmentShader from "../../shaders/avatar-head/fragment.glsl";
 import gsap from "gsap";
 import { aboutProgress } from "../../../animations/transitions/about";
+import { raycast } from "../../utils/raycast";
+import type { ClickableBox3 } from "../../types";
 //import { avatarHologram } from "./hologram";
 
 import type { Material, Bone, Texture } from "three";
@@ -103,8 +105,35 @@ export const createGlasses = (customMaterial?: Material) => {
 
 let mesh: Mesh | null = null;
 let rightHandBone: Bone | null = null;
+let box3: ClickableBox3 | null = null;
 
 const tIdleIntensity = { value: 0 };
+
+const handleAvatarClick = () => {
+  face.triggerClickExpression();
+
+  if (mesh) {
+    if (gsap.isTweening(mesh.position)) return;
+
+    const tl = gsap.timeline();
+    tl.to(mesh.position, {
+      y: 0.5,
+      duration: 0.25,
+      ease: "power2.out",
+      yoyo: true,
+      repeat: 1
+    });
+    tl.to(mesh.scale, {
+      x: 0.95,
+      y: 1.05,
+      z: 0.95,
+      duration: 0.15,
+      yoyo: true,
+      repeat: 1,
+      ease: "power1.inOut"
+    }, 0);
+  }
+};
 
 const waypointsPosition = new Vector3();
 const waypointsRotation = new Euler();
@@ -215,10 +244,17 @@ const setupMesh = () => {
   if (headBone) {
     const glasses = createGlasses();
     glasses.name = "glasses";
-    // Tọa độ định vị kính trên khuôn mặt nhân vật
-    glasses.position.set(0, 0.075, 0.13);
+    // Quay kính 180 độ và điều chỉnh vị trí Z âm vì nhân vật hướng mặt về phía trước (Z âm cục bộ)
+    glasses.rotation.y = Math.PI;
+    glasses.position.set(0, 0.075, -0.13);
     headBone.add(glasses);
   }
+
+  // Khởi tạo Box3 raycasting cho việc click tương tác nhân vật
+  box3 = new Box3().setFromObject(mesh);
+  box3.onClick = handleAvatarClick;
+  box3.hoverSound = "hover";
+  raycast.boxesToCheck.push(box3);
 
   scene.instance.add(transform);
 };
@@ -250,11 +286,20 @@ const tick = () => {
   } else {
     mesh.visible = true;
   }
+
+  // Cập nhật động giới hạn Box3 của nhân vật khi chuyển động
+  if (box3 && mesh) {
+    box3.setFromObject(mesh);
+    box3.expandByScalar(0.05);
+  }
 };
 
 const destroy = () => {
-  //mesh = null;
-  //transform.clear();
+  // Gỡ đăng ký click tương tác nhân vật khi hủy đối tượng
+  if (box3) {
+    raycast.boxesToCheck.splice(raycast.boxesToCheck.indexOf(box3), 1);
+    box3 = null;
+  }
   face.destroy();
   gsap.ticker.remove(tick);
 };

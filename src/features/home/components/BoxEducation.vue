@@ -107,10 +107,18 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
             </span>
             <span class="box-education-value">
               <AppearingText
-                :text="t('education-school')"
+                :text="t('education-school-1')"
                 :steps="2"
                 :duration="0.4"
                 @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.15)"
+              />
+            </span>
+            <span class="box-education-value">
+              <AppearingText
+                :text="t('education-school-2')"
+                :steps="2"
+                :duration="0.4"
+                @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.3)"
               />
             </span>
           </div>
@@ -123,7 +131,7 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
                 :text="t('age-label')"
                 :steps="1"
                 :duration="0.3"
-                @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.1)"
+                @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.2)"
               />
             </span>
             <span class="box-education-value">
@@ -131,7 +139,7 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
                 :text="t('age-value')"
                 :steps="1"
                 :duration="0.3"
-                @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.25)"
+                @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.35)"
               />
             </span>
           </div>
@@ -152,13 +160,13 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
     position: relative;
     padding-left: var(--line-length);
     padding-top: 3px;
-    width: 280px;
-    max-width: calc(var(--svw) * 32);
+    width: 330px;
+    max-width: calc(var(--svw) * 36);
     transform: translate(0, -50%);
   }
 
   @include mixins.landscape-large {
-    width: 280px;
+    width: 330px;
   }
 
   &::after,

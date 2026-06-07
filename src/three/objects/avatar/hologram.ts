@@ -1,5 +1,5 @@
 import { resources } from "../../../utils/resources";
-import { Mesh, Matrix4, Vector3, BufferAttribute, Group, SkinnedMesh } from "three";
+import { Mesh, Matrix4, Vector3, BufferAttribute, Group, SkinnedMesh, MeshBasicMaterial } from "three";
 //import { renderTarget } from "../../core/renderTarget";
 import { clone as cloneSkeleton } from "three/examples/jsm/utils/SkeletonUtils.js";
 import { getMaterial as getHologramMaterial, uniforms as hologramUniforms } from "./hologram-material";
@@ -74,9 +74,16 @@ const setupMesh = () => {
 
   const headBone = skeleton!.bones.find((bone) => bone.name === "headBone");
   if (headBone) {
-    const glasses = createGlasses(material!);
+    const holoGlassesMaterial = new MeshBasicMaterial({
+      color: 0x00e5ff,
+      transparent: true,
+      opacity: 0.85,
+      depthWrite: false
+    });
+    const glasses = createGlasses(holoGlassesMaterial);
     glasses.name = "glasses";
-    glasses.position.set(0, 0.075, 0.13);
+    glasses.rotation.y = Math.PI;
+    glasses.position.set(0, 0.075, -0.13);
     headBone.add(glasses);
   }
 
