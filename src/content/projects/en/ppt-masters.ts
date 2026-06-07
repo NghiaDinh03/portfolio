@@ -1,5 +1,5 @@
-import cubewar0 from "../../../assets/images/projects/cubewar/cubewar-0.webp";
-import cubewar1 from "../../../assets/images/projects/cubewar/cubewar-1.webp";
+import ppt0 from "../../../assets/images/projects/ppt-masters/ppt-masters-0.png";
+import ppt1 from "../../../assets/images/projects/ppt-masters/ppt-masters-1.png";
 
 import type { ProjectContent } from "../../types";
 
@@ -17,7 +17,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: cubewar0,
+        src: ppt0,
         alt: "PPT Slide Generation",
         caption: "Automatic outline extraction and layout planning",
       },
@@ -26,7 +26,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: cubewar1,
+        src: ppt1,
         alt: "Presentation Render",
         caption: "Rendered PPTX slide preview",
       },

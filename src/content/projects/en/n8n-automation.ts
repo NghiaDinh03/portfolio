@@ -1,5 +1,5 @@
-import pokedex0 from "../../../assets/images/projects/pokedex/pokedex-0.webp";
-import pokedex1 from "../../../assets/images/projects/pokedex/pokedex-1.webp";
+import n8n0 from "../../../assets/images/projects/n8n-automation/n8n-automation-0.png";
+import n8n1 from "../../../assets/images/projects/n8n-automation/n8n-automation-1.png";
 
 import type { ProjectContent } from "../../types";
 
@@ -17,7 +17,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: pokedex0,
+        src: n8n0,
         alt: "n8n Dashboard",
         caption: "Self-hosted n8n infrastructure management",
       },
@@ -26,7 +26,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: pokedex1,
+        src: n8n1,
         alt: "Alert Pipeline",
         caption: "Automated alert parsing and Telegram notification flow",
       },

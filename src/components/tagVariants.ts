@@ -30,7 +30,14 @@ export type TagVariant =
   | "gemma"
   | "workflows"
   | "soc"
-  | "migration";
+  | "migration"
+  | "electron"
+  | "vite"
+  | "typescript"
+  | "tailwind"
+  | "cpp"
+  | "qt"
+  | "express";
 
 export const tagLabels = {
   three: "Three.js",
@@ -65,4 +72,11 @@ export const tagLabels = {
   workflows: "Workflows",
   soc: "SOC",
   migration: "Migration",
+  electron: "Electron",
+  vite: "Vite",
+  typescript: "TypeScript",
+  tailwind: "TailwindCSS",
+  cpp: "C++",
+  qt: "Qt",
+  express: "Express",
 } as const satisfies Record<TagVariant, string>;

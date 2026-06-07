@@ -1,5 +1,5 @@
-import cubewar0 from "../../../assets/images/projects/cubewar/cubewar-0.webp";
-import cubewar1 from "../../../assets/images/projects/cubewar/cubewar-1.webp";
+import ppt0 from "../../../assets/images/projects/ppt-masters/ppt-masters-0.png";
+import ppt1 from "../../../assets/images/projects/ppt-masters/ppt-masters-1.png";
 
 import type { ProjectContent } from "../../types";
 
@@ -17,7 +17,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: cubewar0,
+        src: ppt0,
         alt: "Tạo Slide PPT",
         caption: "Tự động trích xuất nội dung và lập dàn ý slide",
       },
@@ -26,7 +26,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: cubewar1,
+        src: ppt1,
         alt: "Kết xuất Slide",
         caption: "Bản xem trước slide PPTX được kết xuất",
       },

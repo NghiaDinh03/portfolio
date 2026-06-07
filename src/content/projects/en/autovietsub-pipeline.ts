@@ -1,5 +1,5 @@
-import quibbo0 from "../../../assets/images/projects/quibbo/quibbo-0.webp";
-import quibbo1 from "../../../assets/images/projects/quibbo/quibbo-1.webp";
+import vietsub0 from "../../../assets/images/projects/autovietsub/autovietsub-0.png";
+import vietsub1 from "../../../assets/images/projects/autovietsub/autovietsub-1.png";
 
 import type { ProjectContent } from "../../types";
 
@@ -17,7 +17,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: quibbo0,
+        src: vietsub0,
         alt: "n8n Workflow",
         caption: "n8n automation pipeline overview",
       },
@@ -26,7 +26,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: quibbo1,
+        src: vietsub1,
         alt: "Subtitle Burn",
         caption: "FFmpeg subtitle render and encoding",
       },

@@ -1,5 +1,5 @@
-import sharkie0 from "../../../assets/images/projects/sharkie/sharkie-0.webp";
-import sharkie1 from "../../../assets/images/projects/sharkie/sharkie-1.webp";
+import thehive0 from "../../../assets/images/projects/thehive/thehive-0.png";
+import thehive1 from "../../../assets/images/projects/thehive/thehive-1.png";
 
 import type { ProjectContent } from "../../types";
 
@@ -17,7 +17,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: sharkie0,
+        src: thehive0,
         alt: "Bảng điều khiển TheHive",
         caption: "Giao diện quản lý case sự cố SOC",
       },
@@ -26,7 +26,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: sharkie1,
+        src: thehive1,
         alt: "Vòng đời cảnh báo",
         caption: "Quy trình gom nhóm cảnh báo và leo thang xử lý sự cố",
       },

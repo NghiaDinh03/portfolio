@@ -6,6 +6,8 @@ export const projectIds = [
   "autovietsub-pipeline",
   "thehive-migration",
   "n8n-automation",
+  "gemma-chat",
+  "xoffice-coworking",
 ];
 
 function simplifyModules(glob: Record<string, any>) {

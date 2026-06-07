@@ -1,5 +1,5 @@
-import streakon0 from "../../../assets/images/projects/streakon/streakon-0.webp";
-import streakon1 from "../../../assets/images/projects/streakon/streakon-1.webp";
+import cyberai0 from "../../../assets/images/projects/cyberai/cyberai-0.png";
+import cyberai1 from "../../../assets/images/projects/cyberai/cyberai-1.png";
 
 import type { ProjectContent } from "../../types";
 
@@ -17,7 +17,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: streakon0,
+        src: cyberai0,
         alt: "Giao diện điều khiển CyberAI",
         caption: "Bảng điều khiển giám sát CyberAI",
       },
@@ -26,7 +26,7 @@ export default {
       type: "media",
       props: {
         type: "image",
-        src: streakon1,
+        src: cyberai1,
         alt: "RAG Chatbot",
         caption: "Trò chuyện RAG nội bộ để phân tích log",
       },
