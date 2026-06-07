@@ -15,10 +15,10 @@
   "germany": "Việt Nam",
   "get-in-touch": "Kết nối với tôi",
   "go-to": "Đi đến",
-  "job-title": "SOC Analyst / Developer",
-  "job-title-1": "SOC Analyst",
-  "job-title-2": "Kỹ sư Bảo mật",
-  "job-title-3": "Lập trình viên Tự động hóa",
+  "job-title": "Security Engineer / SOC Analyst / DevOps Engineer",
+  "job-title-1": "Security Engineer",
+  "job-title-2": "SOC Analyst",
+  "job-title-3": "DevOps Engineer",
   "lets-work-together": "Hãy cùng nhau<br/>hợp tác!",
   "legal": "Thông tin pháp lý",
   "live-view": "Xem trực tiếp",
@@ -33,5 +33,6 @@
   "source-code": "Mã nguồn",
   "switch-to-project": "Chuyển sang dự án {project}",
   "version": "Phiên bản",
-  "view-project": "Xem chi tiết dự án"
+  "view-project": "Xem chi tiết dự án",
+  "slogan": "Always Learning & Building !!!"
 }

@@ -15,10 +15,10 @@
   "germany": "Vietnam",
   "get-in-touch": "Get in touch",
   "go-to": "Go to",
-  "job-title": "SOC Analyst / Developer",
-  "job-title-1": "SOC Analyst",
-  "job-title-2": "Security Engineer",
-  "job-title-3": "Automation Developer",
+  "job-title": "Security Engineer / SOC Analyst / DevOps Engineer",
+  "job-title-1": "Security Engineer",
+  "job-title-2": "SOC Analyst",
+  "job-title-3": "DevOps Engineer",
   "lets-work-together": "Let's work<br/>together!",
   "legal": "Legal Notice",
   "live-view": "Live View",
@@ -33,5 +33,6 @@
   "source-code": "Source Code",
   "switch-to-project": "Switch to project {project}",
   "version": "Version",
-  "view-project": "View project"
+  "view-project": "View project",
+  "slogan": "Always Learning & Building !!!"
 }

@@ -30,6 +30,9 @@ onUnmounted(() => {
         <div class="hero-content-copys">
           <h1 class="hero-title">Nghĩa<br />Đinh</h1>
           <Banner class="hero-banner" :copy="currentRole" v-if="!preloaderVisible" animated />
+          <div class="hero-slogan" v-if="!preloaderVisible">
+            <AppearingText :text="t('slogan')" :steps="2" :duration="0.8" />
+          </div>
         </div>
       </div>
     </div>
@@ -133,6 +136,28 @@ onUnmounted(() => {
     @include mixins.mq("lg") {
       right: -32px;
       transform: rotate(-5deg) translate(0, 80%);
+    }
+  }
+
+  &-slogan {
+    font-family: "Urbanist", sans-serif;
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    color: #263c70;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 24px;
+    z-index: 5;
+    opacity: 0.85;
+
+    @include mixins.mq("md") {
+      font-size: var(--font-size-sm);
+      margin-top: 36px;
+    }
+
+    @include mixins.mq("lg") {
+      font-size: var(--font-size-md);
+      margin-top: 48px;
     }
   }
 }
