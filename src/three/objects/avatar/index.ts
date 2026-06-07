@@ -1,5 +1,5 @@
 import { resources } from "../../../utils/resources";
-import { Mesh, Vector3, Euler, Group, ShaderMaterial, LinearSRGBColorSpace } from "three";
+import { Mesh, Vector3, Euler, Group, ShaderMaterial, LinearSRGBColorSpace, BoxGeometry, MeshBasicMaterial } from "three";
 import { scene } from "../../core/scene";
 import { animations } from "./animations";
 import { sceneWeights, sceneWeightsInOut } from "../../../animations/scenes";
@@ -15,6 +15,91 @@ import { aboutProgress } from "../../../animations/transitions/about";
 //import { avatarHologram } from "./hologram";
 
 import type { Material, Bone, Texture } from "three";
+
+export const createGlasses = (customMaterial?: Material) => {
+  const glasses = new Group();
+
+  const frameMaterial = customMaterial || new MeshBasicMaterial({ color: 0x050505 });
+  const lensMaterial = customMaterial || new MeshBasicMaterial({
+    color: 0x111111,
+    transparent: true,
+    opacity: 0.65,
+    depthWrite: false
+  });
+
+  const barThickness = 0.012;
+  const frameWidth = 0.11;
+  const frameHeight = 0.085;
+  const frameDepth = 0.015;
+
+  const horizontalGeom = new BoxGeometry(frameWidth, barThickness, frameDepth);
+  const verticalGeom = new BoxGeometry(barThickness, frameHeight, frameDepth);
+
+  // Left Eye Frame
+  const leftTop = new Mesh(horizontalGeom, frameMaterial);
+  leftTop.position.set(-0.075, 0.035, 0);
+  glasses.add(leftTop);
+
+  const leftBottom = new Mesh(horizontalGeom, frameMaterial);
+  leftBottom.position.set(-0.075, -0.035, 0);
+  glasses.add(leftBottom);
+
+  const leftOuter = new Mesh(verticalGeom, frameMaterial);
+  leftOuter.position.set(-0.13, 0, 0);
+  glasses.add(leftOuter);
+
+  const leftInner = new Mesh(verticalGeom, frameMaterial);
+  leftInner.position.set(-0.02, 0, 0);
+  glasses.add(leftInner);
+
+  // Right Eye Frame
+  const rightTop = new Mesh(horizontalGeom, frameMaterial);
+  rightTop.position.set(0.075, 0.035, 0);
+  glasses.add(rightTop);
+
+  const rightBottom = new Mesh(horizontalGeom, frameMaterial);
+  rightBottom.position.set(0.075, -0.035, 0);
+  glasses.add(rightBottom);
+
+  const rightOuter = new Mesh(verticalGeom, frameMaterial);
+  rightOuter.position.set(0.13, 0, 0);
+  glasses.add(rightOuter);
+
+  const rightInner = new Mesh(verticalGeom, frameMaterial);
+  rightInner.position.set(0.02, 0, 0);
+  glasses.add(rightInner);
+
+  // Lenses
+  const lensGeom = new BoxGeometry(frameWidth - barThickness, frameHeight - barThickness, 0.005);
+  const leftLens = new Mesh(lensGeom, lensMaterial);
+  leftLens.position.set(-0.075, 0, 0.002);
+  glasses.add(leftLens);
+
+  const rightLens = new Mesh(lensGeom, lensMaterial);
+  rightLens.position.set(0.075, 0, 0.002);
+  glasses.add(rightLens);
+
+  // Bridge
+  const bridgeGeom = new BoxGeometry(0.04, 0.015, frameDepth);
+  const bridge = new Mesh(bridgeGeom, frameMaterial);
+  bridge.position.set(0, 0.015, 0);
+  glasses.add(bridge);
+
+  // Temples (arms)
+  const templeGeom = new BoxGeometry(0.008, 0.012, 0.16);
+  const leftTemple = new Mesh(templeGeom, frameMaterial);
+  leftTemple.position.set(-0.132, 0.015, -0.08);
+  leftTemple.rotation.y = 0.05;
+  glasses.add(leftTemple);
+
+  const rightTemple = new Mesh(templeGeom, frameMaterial);
+  rightTemple.position.set(0.132, 0.015, -0.08);
+  rightTemple.rotation.y = -0.05;
+  glasses.add(rightTemple);
+
+  return glasses;
+};
+
 
 let mesh: Mesh | null = null;
 let rightHandBone: Bone | null = null;
@@ -125,6 +210,15 @@ const setupMesh = () => {
   transform.add(mesh);
 
   rightHandBone = mesh.getObjectByName("bone-right-hand") as Bone;
+
+  const headBone = mesh.getObjectByName("headBone") as Bone;
+  if (headBone) {
+    const glasses = createGlasses();
+    glasses.name = "glasses";
+    // Tọa độ định vị kính trên khuôn mặt nhân vật
+    glasses.position.set(0, 0.075, 0.13);
+    headBone.add(glasses);
+  }
 
   scene.instance.add(transform);
 };

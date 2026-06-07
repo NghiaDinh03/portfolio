@@ -6,7 +6,7 @@ import { getMaterial as getHologramMaterial, uniforms as hologramUniforms } from
 import gsap from "gsap";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { sceneWeights } from "../../../animations/scenes";
-import { avatar } from ".";
+import { avatar, createGlasses } from ".";
 import { aboutProgress } from "../../../animations/transitions/about";
 
 import type { Material, BufferGeometry, Object3D, Skeleton } from "three";
@@ -71,6 +71,15 @@ const setupMesh = () => {
   mesh = new SkinnedMesh(geometry!, material!);
   mesh.bind(skeleton!, new Matrix4());
   mesh.add(skeleton!.bones[0] as Object3D);
+
+  const headBone = skeleton!.bones.find((bone) => bone.name === "headBone");
+  if (headBone) {
+    const glasses = createGlasses(material!);
+    glasses.name = "glasses";
+    glasses.position.set(0, 0.075, 0.13);
+    headBone.add(glasses);
+  }
+
   const resource = resources.items["avatar-model"];
 
   mesh.rotation.copy(resource.scene.children[0].rotation);

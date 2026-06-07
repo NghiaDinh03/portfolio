@@ -4,15 +4,18 @@ import { transitions } from "../../../animations";
 import BoxDescription from "./BoxDescription.vue";
 import BoxServices from "./BoxServices.vue";
 import BoxDetails from "./BoxDetails.vue";
+import BoxEducation from "./BoxEducation.vue";
 import ProgressCount from "./ProgressCount.vue";
 
 const contentDescriptionRef = ref<HTMLDivElement | null>(null);
 const contentServicesRef = ref<HTMLDivElement | null>(null);
 const contentDetailsRef = ref<HTMLDivElement | null>(null);
+const contentEducationRef = ref<HTMLDivElement | null>(null);
 const contentProgressCountRef = ref<HTMLDivElement | null>(null);
 const tlDescriptionRef = ref<gsap.core.Timeline | null>(null);
 const tlServicesRef = ref<gsap.core.Timeline | null>(null);
 const tlDetailsRef = ref<gsap.core.Timeline | null>(null);
+const tlEducationRef = ref<gsap.core.Timeline | null>(null);
 
 const props = defineProps<{
   spacerRef: HTMLElement | null;
@@ -27,6 +30,8 @@ watchEffect((onInvalidate) => {
     contentServicesRef.value &&
     contentDetailsRef.value &&
     tlDetailsRef.value &&
+    contentEducationRef.value &&
+    tlEducationRef.value &&
     contentProgressCountRef.value
   ) {
     transitions.about.setup({
@@ -37,6 +42,8 @@ watchEffect((onInvalidate) => {
       tlServices: tlServicesRef.value,
       contentDetails: contentDetailsRef.value,
       tlDetails: tlDetailsRef.value,
+      contentEducation: contentEducationRef.value,
+      tlEducation: tlEducationRef.value,
       contentProgressCount: contentProgressCountRef.value,
     });
   }
@@ -54,6 +61,9 @@ watchEffect((onInvalidate) => {
     </div>
     <div ref="contentDescriptionRef" class="about-description">
       <BoxDescription @timeline:created="(tl: gsap.core.Timeline) => (tlDescriptionRef = tl)" />
+    </div>
+    <div ref="contentEducationRef" class="about-education">
+      <BoxEducation @timeline:created="(tl: gsap.core.Timeline) => (tlEducationRef = tl)" />
     </div>
     <div ref="contentServicesRef" class="about-services">
       <BoxServices @timeline:created="(tl: gsap.core.Timeline) => (tlServicesRef = tl)" />
@@ -82,7 +92,8 @@ watchEffect((onInvalidate) => {
 
   &-details,
   &-description,
-  &-services {
+  &-services,
+  &-education {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -21,6 +21,8 @@ const setup = ({
   contentServices,
   tlDetails,
   contentDetails,
+  tlEducation,
+  contentEducation,
   contentProgressCount,
 }: {
   about: HTMLElement;
@@ -30,6 +32,8 @@ const setup = ({
   contentServices: HTMLDivElement;
   tlDetails: gsap.core.Timeline;
   contentDetails: HTMLDivElement;
+  tlEducation: gsap.core.Timeline;
+  contentEducation: HTMLDivElement;
   contentProgressCount: HTMLDivElement;
 }) => {
   setupInAnimation(about);
@@ -42,6 +46,8 @@ const setup = ({
     contentServices,
     tlDetails,
     contentDetails,
+    tlEducation,
+    contentEducation,
     contentProgressCount,
   });
   setupOutAnimation(about);
@@ -186,16 +192,20 @@ const setupSectionsAnimation = ({
   contentServices,
   tlDetails,
   contentDetails,
+  tlEducation,
+  contentEducation,
   contentProgressCount,
 }: {
   about: HTMLElement;
   contentDescription: HTMLDivElement;
   contentServices: HTMLDivElement;
   contentDetails: HTMLDivElement;
+  contentEducation: HTMLDivElement;
   contentProgressCount: HTMLDivElement;
   tlDescription: gsap.core.Timeline;
   tlServices: gsap.core.Timeline;
   tlDetails: gsap.core.Timeline;
+  tlEducation: gsap.core.Timeline;
 }) => {
   sectionsMm = createMatchMedia((_context, { isLandscape }) => {
     const tl = gsap.timeline({
@@ -215,6 +225,7 @@ const setupSectionsAnimation = ({
       // Equal spacing between three animations: 0, 0.275, 0.55
       const DETAILS_DELAY = 0;
       const DESCRIPTION_DELAY = 0.4;
+      const EDUCATION_DELAY = 0.4;
       const SERVICES_DELAY = 0.8;
 
       // Details animation (first, only on landscape)
@@ -235,6 +246,17 @@ const setupSectionsAnimation = ({
       tl.add(() => {
         tlDescription?.play();
       }, DESCRIPTION_DELAY);
+
+      // Education animation
+      tl.fromTo(
+        contentEducation,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.15, ease: "power1.out" },
+        EDUCATION_DELAY,
+      );
+      tl.add(() => {
+        tlEducation?.play();
+      }, EDUCATION_DELAY);
 
       // Services animation
       tl.fromTo(contentServices, { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power1.out" }, SERVICES_DELAY);
