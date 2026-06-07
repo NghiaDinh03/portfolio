@@ -106,6 +106,7 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
               />
             </span>
             <span class="box-education-value">
+              <span class="bullet">-</span>
               <AppearingText
                 :text="t('education-school-1')"
                 :steps="2"
@@ -114,6 +115,7 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
               />
             </span>
             <span class="box-education-value">
+              <span class="bullet">-</span>
               <AppearingText
                 :text="t('education-school-2')"
                 :steps="2"
@@ -160,13 +162,13 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
     position: relative;
     padding-left: var(--line-length);
     padding-top: 3px;
-    width: 330px;
-    max-width: calc(var(--svw) * 36);
+    width: 420px;
+    max-width: calc(var(--svw) * 45);
     transform: translate(0, -50%);
   }
 
   @include mixins.landscape-large {
-    width: 330px;
+    width: 420px;
   }
 
   &::after,
@@ -258,6 +260,14 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
     font-size: var(--font-size-sm);
     color: var(--color-white-400);
     line-height: 1.3;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+
+    .bullet {
+      color: var(--color-cyan-400);
+      flex-shrink: 0;
+    }
 
     @include mixins.mq("md") {
       font-size: var(--font-size-md);
