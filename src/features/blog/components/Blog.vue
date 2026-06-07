@@ -144,7 +144,7 @@ const filteredPosts = computed(() => {
   flex: 1;
   background: var(--color-background-400, #0a0a0a);
   border: var(--stroke-sm) solid var(--color-cyan-400);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   color: var(--color-white-400);
   padding: var(--space-xs) var(--space-sm);
   outline: none;
@@ -159,7 +159,7 @@ const filteredPosts = computed(() => {
 .blog-filter {
   background: var(--color-background-400, #0a0a0a);
   border: var(--stroke-sm) solid var(--color-cyan-400);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   color: var(--color-white-400);
   padding: var(--space-xs) var(--space-sm);
   outline: none;
@@ -183,20 +183,20 @@ const filteredPosts = computed(() => {
 }
 
 .blog-card {
-  border: var(--stroke-sm) solid rgba(0, 229, 255, 0.2);
-  border-radius: var(--radius-md);
-  background: rgba(10, 10, 10, 0.4);
-  backdrop-filter: blur(8px);
+  border: var(--stroke-sm) solid rgba(0, 229, 255, 0.15);
+  border-radius: var(--radius-xl);
+  background: rgba(10, 10, 10, 0.45);
+  backdrop-filter: blur(12px);
   padding: var(--space-md);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
   &:hover {
     border-color: var(--color-cyan-400);
-    box-shadow: 0 4px 20px rgba(0, 229, 255, 0.15);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 229, 255, 0.25);
+    transform: translateY(-4px);
   }
 
   &-tags {
@@ -285,7 +285,7 @@ const filteredPosts = computed(() => {
   width: 100%;
   max-width: 850px;
   max-height: 85vh;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: var(--stroke-sm) solid rgba(0, 229, 255, 0.3);
   box-shadow: 0 0 40px rgba(0, 229, 255, 0.25);
   overflow: hidden;
