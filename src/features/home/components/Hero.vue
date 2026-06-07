@@ -5,6 +5,7 @@ import Banner from "../../../components/Banner.vue";
 import { preloaderVisible } from "../../../composables/usePreloader";
 import { t } from "../../../i18n/utils/translate";
 import AppearingText from "../../../components/AppearingText.vue";
+import gsap from "gsap";
 
 const roleKeys = ["job-title-1", "job-title-2", "job-title-3"];
 const currentRoleIndex = ref(0);
@@ -37,12 +38,13 @@ onUnmounted(() => {
           <div class="holo-status">ND-03 // SYSTEM ACTIVE</div>
 
           <div class="hero-content-copys">
-            <div class="hero-title-wrapper">
-              <h1 class="hero-title">Nghĩa<br />Đinh</h1>
-              <Banner class="hero-banner" :copy="currentRole" animated />
+            <h1 class="hero-title">Nghĩa<br />Đinh</h1>
+            <!-- Banner vai trò đưa vào flow bên dưới tên, chếch góc -5 độ -->
+            <div class="hero-role-container">
+              <Banner class="hero-banner-new" :copy="currentRole" animated />
             </div>
             <div class="hero-slogan">
-              <AppearingText :text="t('slogan')" :steps="2" :duration="0.8" @timeline:created="tl => tl.play()" />
+              <AppearingText :text="t('slogan')" :steps="2" :duration="0.8" @timeline:created="tl => gsap.delayedCall(0.6, () => tl.play())" />
             </div>
           </div>
         </div>
@@ -113,11 +115,6 @@ onUnmounted(() => {
     }
   }
 
-  &-title-wrapper {
-    position: relative;
-    width: fit-content;
-  }
-
   &-title {
     font-family: "Times New Roman", Times, serif;
     font-weight: 900;
@@ -139,43 +136,40 @@ onUnmounted(() => {
     }
   }
 
-  &-banner {
-    position: absolute;
-    bottom: -6px;
-    right: -24px;
+  &-role-container {
+    margin-top: 8px;
+    margin-bottom: 4px;
+    width: fit-content;
+    display: flex;
+    justify-content: flex-start;
     z-index: 10;
+  }
+
+  &-banner-new {
     transform: rotate(-5deg);
-
-    @include mixins.mq("sm") {
-      right: -32px;
-      bottom: -8px;
-    }
-
-    @include mixins.mq("lg") {
-      right: -40px;
-      bottom: -10px;
-    }
   }
 
   &-slogan {
-    font-family: "Urbanist", sans-serif;
+    font-family: "Times New Roman", Times, serif;
     font-weight: 700;
     font-size: var(--font-size-xxs);
     color: #263c70;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-top: 16px;
+    margin-top: 12px;
     z-index: 5;
-    opacity: 0.85;
+    opacity: 0;
+    animation: fadeInSlogan 0.8s ease-out forwards;
+    animation-delay: 0.6s;
 
     @include mixins.mq("md") {
       font-size: var(--font-size-xs);
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
     @include mixins.mq("lg") {
       font-size: var(--font-size-sm);
-      margin-top: 24px;
+      margin-top: 20px;
     }
   }
 
@@ -246,6 +240,12 @@ onUnmounted(() => {
   50% {
     border-color: rgba(0, 229, 255, 0.25);
     box-shadow: 0 0 25px rgba(0, 229, 255, 0.06);
+  }
+}
+
+@keyframes fadeInSlogan {
+  to {
+    opacity: 0.85;
   }
 }
 </style>

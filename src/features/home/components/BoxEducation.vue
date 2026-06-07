@@ -244,7 +244,7 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
   }
 
   &-label {
-    font-family: "Urbanist", sans-serif;
+    font-family: "Times New Roman", Times, serif;
     font-weight: 700;
     font-size: var(--font-size-xs);
     color: var(--color-text-cyan-400);

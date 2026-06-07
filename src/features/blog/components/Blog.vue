@@ -176,7 +176,7 @@ const filteredPosts = computed(() => {
   color: var(--color-text-400);
   padding: var(--space-xs) var(--space-sm);
   outline: none;
-  font-family: "Urbanist", sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: 600;
   font-size: var(--font-size-sm);
   transition: all 0.25s ease-in-out;
@@ -199,7 +199,7 @@ const filteredPosts = computed(() => {
   color: var(--color-text-400);
   padding: var(--space-xs) var(--space-sm);
   outline: none;
-  font-family: "Urbanist", sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: 600;
   cursor: pointer;
   font-size: var(--font-size-sm);
@@ -285,7 +285,7 @@ const filteredPosts = computed(() => {
       background: #263c70;
       color: var(--color-white-400);
       font-size: 10px;
-      font-family: "Urbanist", sans-serif;
+      font-family: "Times New Roman", Times, serif;
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 20px;
@@ -338,7 +338,7 @@ const filteredPosts = computed(() => {
     padding: 2px 8px;
     border-radius: 10px;
     text-transform: uppercase;
-    font-family: "Urbanist", sans-serif;
+    font-family: "Times New Roman", Times, serif;
     font-weight: 600;
   }
 
@@ -375,7 +375,7 @@ const filteredPosts = computed(() => {
   &-link {
     color: #263c70;
     font-weight: 700;
-    font-family: "Urbanist", sans-serif;
+    font-family: "Times New Roman", Times, serif;
     font-size: var(--font-size-sm);
     transition: all 0.2s ease;
     display: flex;
@@ -524,7 +524,7 @@ const filteredPosts = computed(() => {
     padding: 2px 8px;
     border-radius: 10px;
     text-transform: uppercase;
-    font-family: "Urbanist", sans-serif;
+    font-family: "Times New Roman", Times, serif;
     font-weight: 600;
   }
 }

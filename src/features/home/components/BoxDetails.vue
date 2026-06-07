@@ -223,7 +223,7 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
   }
 
   &-title {
-    font-family: "Urbanist", sans-serif;
+    font-family: "Times New Roman", Times, serif;
     font-weight: 900;
     font-size: var(--font-size-title-xxs);
 
