@@ -14,6 +14,8 @@ import { useScroll } from "./composables/useScroll";
 import { projectVisible } from "./composables/useRouteObserver";
 import ProjectBackground from "./features/projects/components/ProjectBackground.vue";
 import { useClickSound } from "./features/sounds/composables/useClickSounds";
+import BlogDetail from "./features/blog/components/BlogDetail.vue";
+import { blogDetailVisible } from "./features/blog/store";
 //import { useHoverSound } from "./features/sounds/composables/useHoverSounds";
 
 const { isTransitioning } = useProjectTransition();
@@ -51,6 +53,14 @@ const { isTouch } = useAgent();
     </div>
   </div>
 
+  <!-- blog detail overlay -->
+  <div
+    class="blog-detail-wrapper"
+    :class="{ 'blog-detail-wrapper-visible': blogDetailVisible }"
+  >
+    <BlogDetail />
+  </div>
+
   <Cursor v-if="!isTouch" />
 </template>
 
@@ -62,12 +72,12 @@ const { isTouch } = useAgent();
 }
 
 .project-wrapper {
-  position: fixed; /* <-- key */
+  position: fixed;
   inset: 0;
-  overflow: hidden; /* new page must NOT scroll during transition */
+  overflow: hidden;
   z-index: var(--z-index-layout-project);
   visibility: hidden;
-  pointer-events: none; /* avoid interaction before fully opened */
+  pointer-events: none;
 
   &-visible {
     visibility: visible;
@@ -79,6 +89,23 @@ const { isTouch } = useAgent();
 .project-content {
   width: 100%;
   height: 100%;
-  overflow: hidden; /* ensure no scroll container */
+  overflow: hidden;
+}
+
+.blog-detail-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  z-index: calc(var(--z-index-layout-project) + 1);
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &-visible {
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+  }
 }
 </style>

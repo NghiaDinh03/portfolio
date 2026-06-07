@@ -44,7 +44,7 @@ onMounted(loadPreviews);
     <ProjectHero :content="content" :projectId="projectId" />
     <div class="project-content-components">
       <div
-        v-for="(component, index) in content.components"
+        v-for="(component, index) in (content.components ?? []).slice(1)"
         :key="`${component.type}-${index}`"
         class="grid project-content-grid"
       >
